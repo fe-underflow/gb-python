@@ -1,0 +1,37 @@
+### 1-е задание
+a = 10
+b = a + 5
+print("10+5 =", b)
+
+
+name = input("Введите ваше имя: ")
+age = input("Введите ваш возраст: ")
+print("Привет. Меня зовут {0} и мне {1}".format(name, age))
+
+
+### 2-е задание
+seconds = int(input("Введите количество секунд: "))
+hour = seconds // 3600
+minute = (seconds // 60) % 60
+sec = seconds % 60
+print("Время в формате чч:мм:сс - {0}:{1}:{2}".format(hour, minute, sec))
+
+
+### 3-е задание
+number = input("Введите число n: ")
+num1 = int(number)
+num2 = int(number + str(num1))
+num3 = int(number + str(num2))
+sum = num1 + num2 + num3
+print("Сумма чисел n + nn + nnn равна = {0}".format(sum))
+
+
+### 4-е задание
+numb = int(input("Введите целое положительное число: "))
+max = numb%10
+numb = numb//10
+while numb > 0:
+    if numb%10 > max:
+        max = numb%10
+    numb = numb//10
+print("Самая большая цифра в числе: {}".format(max))
