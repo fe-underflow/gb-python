@@ -1,0 +1,50 @@
+### №1
+spisok = [5, -7, 'helloWorld', True, 31.4, None, [1, 0, 4], ['spisok'], 38.17]
+for element in spisok:
+    print(type(element))
+
+### №2
+input_string = input("Введите список элементов, разделенных пробелом, для обмена значений соседних элементов: ")
+swlist = input_string.split()
+k = 0
+for i in range(int(len(swlist) / 2)):
+    swlist[k], swlist[k + 1] = swlist[k + 1], swlist[k]
+    k += 2
+print(swlist)
+
+### №3
+seasons = {'Зима': (1, 2, 12),
+           'Весна': (3, 4, 5),
+           'Лето': (6, 7, 8),
+           'Осень': (9, 10, 11)}
+
+month = int(input("Введите месяц в виде целого числа от 1 до 12: "))
+for key in seasons.keys():
+    if month in seasons[key]:
+        print(key)
+
+### №4
+input_string = input("Введите строку из нескольких слов, разделённых пробелами: ").split()
+for index, word in enumerate(input_string):
+    if len(word) < 10:
+        print(index + 1, word)
+    else:
+        print(index + 1, word[0:9])
+
+### №5
+my_list = [7, 5, 3, 3, 2]
+rate_input = int(input("Введите новый элемент рейтинга: "))
+
+if rate_input not in my_list:
+    my_list.append(rate_input)
+    print(my_list)
+    exit()
+
+for index, item in enumerate(my_list):
+    if rate_input == item:
+        my_list.insert(index + 1, item)
+        print(my_list)
+        break
+        
+
+
