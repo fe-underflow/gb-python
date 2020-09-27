@@ -1,0 +1,92 @@
+# 1) Реализовать класс «Дата», функция-конструктор которого должна принимать дату в виде строки
+# формата «день-месяц-год». В рамках класса реализовать два метода.
+# Первый, с декоратором @classmethod, должен извлекать число, месяц, год и преобразовывать
+# их тип к типу «Число». Второй, с декоратором @staticmethod, должен проводить валидацию числа,
+# месяца и года (например, месяц — от 1 до 12). Проверить работу полученной структуры на реальных данных.
+
+class Data:
+    def __init__(self, date):
+
+        self.date = str(date)
+
+    @classmethod
+    def extract(cls, date):
+        my_date = []
+
+        for i in date.split():
+            if i != "-": my_date.append(i)
+        return int(my_date[0]), int(my_date[1]), int(my_date[2])
+
+    @staticmethod
+    def valid(day, month, year):
+
+        if 1 <= day <= 31:
+            if 1 <= month <= 12:
+                if year >= 0:
+                    return f"Всё верно"
+                else:
+                    return f"Значение года не может быть отрицательным"
+            else:
+                return f"Месяцев всего 12!!!"
+        else:
+            return f"Ошибка"
+
+    def __str__(self):
+        return f"Текущая дата {Data.extract(self.date)}"
+
+
+today = Data('11 - 1 - 2001')
+print(today)
+
+
+# 2) Создайте собственный класс-исключение, обрабатывающий ситуацию деления на нуль.
+# Проверьте его работу на данных, вводимых пользователем.
+# При вводе пользователем нуля в качестве делителя программа должна корректно обработать эту ситуацию
+# и не завершиться с ошибкой.
+
+class ZeroDivision(Exception):
+    def __init__(self, dividend: int = 1, divider: int = 1):
+        self.dividend = dividend
+        self.divider = divider
+
+    @staticmethod
+    def result(dividend, divider):
+        try:
+            return dividend / divider
+        except:
+            return f"Ошибка! Попытка деления на 0."
+
+
+x = ZeroDivision()
+print(x.result(100, 0))
+print(x.result(10, 5))
+
+
+
+# 3) Создайте собственный класс-исключение, который должен проверять содержимое списка
+# на наличие только чисел. Проверить работу исключения на реальном примере.
+# Необходимо запрашивать у пользователя данные и заполнять список только числами.
+# Класс-исключение должен контролировать типы данных элементов списка.
+
+class ErrorType(Exception):
+    def __init__(self, *args):
+        self.my_list = []
+
+    def my_input(self):
+        while True:
+            val = input("Введите значения и нажимайте Enter - ")
+
+            try:
+                val = int(val)
+            except ValueError:
+                print(f"Вы явно вводите что-то не то. Нужно или числа или stop.")
+
+            if type(val) is int:
+                self.my_list.append(val)
+            elif val == "stop":
+                print(f"Завершено! Текущий список {self.my_list}")
+                break
+
+
+result = ErrorType(1)
+print(result.my_input())
